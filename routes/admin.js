@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/login',(req,res)=>{
-    res.send('admin page...')
+   res.send('haiiiii');
+   
 });
 
 module.exports = router;
