@@ -8,6 +8,7 @@ const path = require('path');
 
 const userRoutes = require('./routes/user');    //specified the path
 const adminRoutes = require('./routes/admin');
+const router = require("./routes/user");
 
 
 app.set('views',path.join(__dirname,'views'));   //set view engine
@@ -17,6 +18,14 @@ app.use(express.static('public'));
 
 app.use('/user',userRoutes);    //route to user login
 app.use('/admin',adminRoutes);  //route to admin login
+
+
+//data from the req is undefined.Use these to get the data in json format . 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+
+
+router.post('/register')
 
 
 
