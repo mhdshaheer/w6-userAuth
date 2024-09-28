@@ -1,11 +1,18 @@
 const express = require('express');
-const router = express.Router();
+const user = express.Router();
 
-router.get('/login',(req,res)=>{
+
+user.get('/login',(req,res)=>{
     res.render('user/login')
 });
-router.get('/register',(req,res)=>{
+user.get('/register',(req,res)=>{
     res.render('user/register')
 });
 
-module.exports = router;
+user.post('/register',(req,res)=>{
+console.log('data');
+console.log(req.body)
+res.json(req.body)
+})
+
+module.exports = user;

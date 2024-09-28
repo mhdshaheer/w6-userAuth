@@ -8,7 +8,7 @@
                     <p class="text-center lead">Enter your details to sign Up.</p>
 
                     {{!-------------- form ----------}}
-                    <form>
+                    <form action="/user/register" method="post">
                         <label class="font-500">Username</label>
                         {{!-- ---name="username"-- --}}
                         <input id="username" name="username" class="form-control form-control-lg mb-3" type="text">
@@ -41,6 +41,8 @@
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('form').addEventListener('submit',formValidate);
     })
+
+
     function formValidate(e) {
         console.log('jkdfnk')
         e.preventDefault();
@@ -50,7 +52,7 @@
 
         if (username == '' || password == '' || confirmPassword == '') {
 
-            swal.fire('All fields are required');
+            Swal.fire('All fields are required');
             return false;
         } else if (password != confirmPassword) {
 
@@ -61,16 +63,11 @@
             });
             //swal.fire('Password are not match');
             return false;
-        } 
-        //else {
-        //    Swal.fire(
-        //        title: "Success",
-        //        text: "form sumitted",
-        //        icon: "succuss"
-        //    )
-        //}
+        }
+
+        console.log("proceed..")
         e.target.submit();
-        return true; 
+        return true;
     }
 
 

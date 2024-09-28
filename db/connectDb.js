@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const connectDB = async()=>{
     console.log('hi mongooose')
     try{
-        const conn = await mongoose.connect('mongodb://localhoost:27017/userAuth',{});
+        const conn = await mongoose.connect('mongodb://localhost:27017/userAuth',{});
         console.log(`mongoDB connected : ${conn.connection.host}`);
-    }catch{
-        //console.log(error);
+    }catch(error){
+        console.log(error);
         process.exit(1);
     }
 }
