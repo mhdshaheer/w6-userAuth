@@ -1,5 +1,6 @@
 const express = require('express');
 const route = express.Router();
+const userController = require('../controller/userController');
 
 
 route.get('/login',(req,res)=>{
@@ -9,10 +10,6 @@ route.get('/register',(req,res)=>{
     res.render('user/register')
 });
 
-route.post('/register',(req,res)=>{
-console.log('data');
-console.log(req.body)
-res.json(req.body)
-})
+route.post('/register',userController.registerUser)
 
 module.exports = route;
