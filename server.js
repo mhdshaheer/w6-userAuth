@@ -6,12 +6,13 @@ const path = require('path');
 
 //=============================================
 
+//data from the req is undefined.Use these to get the data in json format . 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 const userRoutes = require('./routes/user');    //specified the path
 const adminRoutes = require('./routes/admin');
-
+//  missed anything.....?
 
 
 app.set('views',path.join(__dirname,'views'));   //set view engine
@@ -23,12 +24,8 @@ app.use('/user',userRoutes);    //route to user login
 app.use('/admin',adminRoutes);  //route to admin login
 
 
-//data from the req is undefined.Use these to get the data in json format . 
 
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-});
+
 
 
 
@@ -36,5 +33,5 @@ app.use((err, req, res, next) => {
 connectDB();    //calling mongodb connectDB
 
 app.listen(8001,()=>{
-    console.log("server is running on : http://localhost:3001/");
+    console.log("server is running on : http://localhost:8001/");
 });
