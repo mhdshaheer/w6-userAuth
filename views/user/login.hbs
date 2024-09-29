@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-lg-6 col-12 mx-auto hi">
                 <div class="p-5 bg-white rounded shadow-lg">
-                    <p>{{logoutMsg }}</p>
+                    
                     <h2 class="mb-2 text-center">Sign In</h2>
                     <p class="text-center lead">Enter your details to sign in.</p>
-                    <p class="text-center text-danger">{{errMsg}}</p>
+                    <p class="text-center text-danger ">{{{message}}}</p>
                     {{!-------------- form ----------}}
                     <form action="/verify" method="post">
                         <label class="font-500">username</label>

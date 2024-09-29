@@ -1,12 +1,12 @@
 <div class="demo-container">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-12 mx-auto hi">
+            <div class="col-lg-6 col-12 mx-auto">
                 <div class="p-5 bg-white rounded shadow-lg">
 
                     <h2 class="mb-2 text-center">Sign Up</h2>
                     <p class="text-center lead">Enter your details to sign Up.</p>
-
+                    <p class="text-center text-danger ">{{{message}}}</p>
                     {{!-------------- form ----------}}
                     <form action="/user/register" method="post">
                         <label class="font-500">Username</label>
@@ -14,7 +14,7 @@
                         <input id="username" name="username" class="form-control form-control-lg mb-3" type="text">
                         <label class="font-500">Password</label>
                         {{!-- ---name="password"-- --}}
-                        <input id="password" name="password" class="form-control form-control-lg" type="password">
+                        <input id="password" name="password" class="form-control form-control-lg mb-3" type="password">
 
                         <label class="font-500">Confirm Password</label>
                         {{!-- ---name="confirmPassword"-- --}}
