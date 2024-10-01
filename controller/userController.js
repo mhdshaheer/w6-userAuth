@@ -36,7 +36,9 @@ const login = async (req, res) => {
 
         }
         const isMatch = await bcrypt.compare(password,user.password);
-        if(!isMatch) res.render('user/login',{message:'password incorrect'})
+        if(!isMatch) res.render('user/login',{message:'password incorrect'});
+
+        req.session.user = true;
         res.render('user/home');
 
     } catch (error) {

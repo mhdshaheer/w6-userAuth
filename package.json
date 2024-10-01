@@ -12,8 +12,11 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^4.21.0",
+    "express-session": "^1.18.0",
     "hbs": "^4.2.0",
     "mongoose": "^8.6.3",
-    "nodemon": "^3.1.7"
+    "nocache": "^4.0.0",
+    "nodemon": "^3.1.7",
+    "session": "^0.1.0"
   }
 }

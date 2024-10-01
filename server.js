@@ -3,8 +3,22 @@ const app = express();
 const hbs = require('hbs')
 const connectDB = require('./db/connectDb');    //mongodb connection is imported
 const path = require('path');
+const session = require('express-session');
+const nocache = require('nocache');
+
 
 //=============================================
+
+//session and nocache middleware
+app.use(nocache());
+app.use(session({
+    secret : 'keylocked',
+    resave:false,
+    saveUninitialized:true,
+    cookie:{maxAge:1000*60*60*24}
+}))
+
+
 
 //data from the req is undefined.Use these to get the data in json format . 
 app.use(express.json());
