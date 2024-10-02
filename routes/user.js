@@ -8,6 +8,7 @@ route.get('/login',auth.isLogin,userController.loadLogin);
 route.post('/login',userController.login);
 route.get('/register',auth.isLogin,userController.loadRegister);
 route.post('/register',userController.registerUser);
-route.get('home',auth.checkSession,userController.loadHome);
+route.get('/home',auth.checkSession,userController.loadHome);
+route.get('/logout',auth.checkSession,userController.logout)
 
 module.exports = route;

@@ -28,22 +28,35 @@ const registerUser = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await userSchema.findOne({username});
+        console.log(req.body);
         
+        const user = await userSchema.findOne({ username });
+
 
         if (!user) {
             return res.render('user/login', { message: 'User does not exist' });
 
         }
-        const isMatch = await bcrypt.compare(password,user.password);
-        if(!isMatch) res.render('user/login',{message:'password incorrect'});
+        const isMatch = await bcrypt.compare(password, user.password);
+            console.log(isMatch);
+            if(!isMatch){
+                res.render('user/login',{message:'password incorrect'})
+            }
+            req.session.user = true;
+            console.log(req.session);
+            
+            res.render('user/home')
+       
 
-        req.session.user = true;
-        res.render('user/home');
 
     } catch (error) {
         res.render('user/login', { message: 'Something went wrong' })
     }
+}
+
+const logout = (req,res) =>{
+    req.session.user = null;
+    res.redirect('/user/login');
 }
 
 const loadLogin = (req, res) => {
@@ -52,7 +65,7 @@ const loadLogin = (req, res) => {
 const loadRegister = (req, res) => {
     res.render('user/register')
 };
-const loadHome = (req,res)=>{
+const loadHome = (req, res) => {
     res.render('user/home');
 }
 
@@ -61,5 +74,6 @@ module.exports = {
     login,
     loadLogin,
     loadRegister,
-    loadHome
+    loadHome,
+    logout
 }
