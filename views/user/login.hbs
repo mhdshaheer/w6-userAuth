@@ -1,12 +1,13 @@
 <div class="demo-container">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-12 mx-auto hi">
+            <div class="col-lg-6 col-12 mx-auto">
                 <div class="p-5 bg-white rounded shadow-lg">
-
                     <h2 class="mb-2 text-center">Sign In</h2>
                     <p class="text-center lead">Enter your details to sign in.</p>
-                    <p class="text-center text-success ">{{{message}}}</p>
+                    {{#if error}}
+                    <p class="text-center text-danger">{{error}}</p>
+                    {{/if}}
                     {{!-------------- form ----------}}
                     <form action="/user/login" method="post">
                         <label class="font-500">username</label>
@@ -20,7 +21,7 @@
                     </form>
                     {{!--------------end form ----------}}
                     <div class="text-center pt-4">
-                        <p class="m-0">Do not have an account? <a href="" class="text-dark font-weight-bold">Sign Up</a>
+                        <p class="m-0">Do not have an account? <a href="/user/register" class="text-dark font-weight-bold">Sign Up</a>
                         </p>
                     </div>
                 </div>
@@ -42,8 +43,14 @@
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         console.log(username, password)
+        
         if (username == '' || password == '') {
-            Swal.fire('All fields are required');
+            swal({
+                title: "Failed...!",
+                text: "All fields are required",
+                icon: "error",
+            });
+            //Swal.fire('All fields are required');
             return false;
         }
 
@@ -52,3 +59,4 @@
         return true;
     }
 </script>
+

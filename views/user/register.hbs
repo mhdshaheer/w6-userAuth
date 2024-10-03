@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-lg-6 col-12 mx-auto">
                 <div class="p-5 bg-white rounded shadow-lg">
-
                     <h2 class="mb-2 text-center">Sign Up</h2>
                     <p class="text-center lead">Enter your details to sign Up.</p>
                     <p class="text-center text-danger ">{{{message}}}</p>
@@ -15,18 +14,16 @@
                         <label class="font-500">Password</label>
                         {{!-- ---name="password"-- --}}
                         <input id="password" name="password" class="form-control form-control-lg mb-3" type="password">
-
                         <label class="font-500">Confirm Password</label>
                         {{!-- ---name="confirmPassword"-- --}}
                         <input id="confirmPassword" name="confirmPassword" class="form-control form-control-lg"
                             type="password">
-
                         <p class="m-0 py-4"><a href="" class="text-muted">Forget password?</a></p>
                         <button type="submit" class="btn btn-success btn-lg w-100 shadow-lg">SIGN UP</button>
                     </form>
                     {{!--------------end form ----------}}
                     <div class="text-center pt-4">
-                        <p class="m-0">Already have an account? <a href="" class="text-dark font-weight-bold">Sign
+                        <p class="m-0">Already have an account? <a href="/user/login" class="text-dark font-weight-bold">Sign
                                 In</a>
                         </p>
                     </div>
@@ -38,11 +35,9 @@
 
 <script>
 
-
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('form').addEventListener('submit', formValidate);
-    })
-
+    });
 
     function formValidate(e) {
 
@@ -50,23 +45,35 @@
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
-        console.log(password, confirmPassword)
 
         if (username === '' || password === '' || confirmPassword === '') {
+            
+             swal({
+                title: "Retry !!",
+                text: "All fields are required",
+                icon: "error",
+            });
 
-            Swal.fire('All fields are required');
 
-
+           // Swal.fire({
+             //   title: "All fields are required",
+              //  icon: "error"
+            //});
 
             return false;
         } else if (password != confirmPassword) {
 
-            Swal.fire({
-                title: "Password are not match",
-                //text: "You clicked the button!",
-                icon: "error"
+            swal({
+                title: "Retry !",
+                text: "Password are not match",
+                icon: "error",
             });
-            //swal.fire('Password are not match');
+
+           // Swal.fire({
+            //   // title: "Password are not match",
+             //   icon: "error"
+           // });
+
             return false;
         }
 
@@ -74,6 +81,5 @@
         e.target.submit();
         return true;
     }
-
 
 </script>
