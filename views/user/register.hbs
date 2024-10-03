@@ -26,7 +26,8 @@
                     </form>
                     {{!--------------end form ----------}}
                     <div class="text-center pt-4">
-                        <p class="m-0">Already have an account? <a href="" class="text-dark font-weight-bold">Sign In</a>
+                        <p class="m-0">Already have an account? <a href="" class="text-dark font-weight-bold">Sign
+                                In</a>
                         </p>
                     </div>
                 </div>
@@ -37,22 +38,26 @@
 
 <script>
 
-   
+
     document.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('form').addEventListener('submit',formValidate);
+        document.querySelector('form').addEventListener('submit', formValidate);
     })
 
 
     function formValidate(e) {
-       
+
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        console.log(password, confirmPassword)
 
-        if (username == '' || password == '' || confirmPassword == '') {
+        if (username === '' || password === '' || confirmPassword === '') {
 
             Swal.fire('All fields are required');
+
+
+
             return false;
         } else if (password != confirmPassword) {
 

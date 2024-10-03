@@ -1,0 +1,55 @@
+<div class="demo-container adminLogin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-12 mx-auto hi">
+                <div class="p-5 bg-white rounded shadow-lg">
+
+                    <h2 class="mb-2 text-center">Sign In</h2>
+                    <p class="text-center lead">Enter your details to sign in.</p>
+                    <p class="text-center text-success ">{{{message}}}</p>
+                    {{!-------------- form ----------}}
+                    <form action="/admin/login" method="post">
+                        <label class="font-500">username</label>
+                        {{!-- ---name="username"-- --}}
+                        <input name="username" id="username" class="form-control form-control-lg mb-3" type="text">
+                        <label class="font-500">Password</label>
+                        {{!-- ---name="password"-- --}}
+                        <input name="password" id="password" class="form-control form-control-lg" type="password">
+                        <p class="m-0 py-4"><a href="" class="text-muted">Forget password?</a></p>
+                        <button type="submit" class="btn btn-danger btn-lg w-100 shadow-lg">SIGN IN</button>
+                    </form>
+                    {{!--------------end form ----------}}
+                    <div class="text-center pt-4">
+                        <p class="m-0">Do not have an account? <a href="" class="text-dark font-weight-bold">Sign Up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    console.log('login head hiiii')
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('form').addEventListener('submit', formValidate);
+    })
+
+
+    function formValidate(e) {
+        console.log('1')
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        console.log(username, password)
+        if (username == '' || password == '') {
+
+            Swal.fire('All fields are required');
+            return false;
+        }
+
+        console.log("proceed..")
+        e.target.submit();
+        return true;
+    }
+</script>
