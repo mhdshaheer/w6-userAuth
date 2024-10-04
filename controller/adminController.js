@@ -20,7 +20,8 @@ const login =async (req,res)=>{
 
        if(!isMatch) return res.render('admin/login',{message : 'Incorrect password'});
        req.session.admin = true;
-       res.render('admin/dashboard',{message:'Login successfull'})
+       req.session.adminMessage = 'success'
+       res.redirect('/admin/dashboard')
 
 
     } catch (error) {
@@ -31,18 +32,42 @@ const login =async (req,res)=>{
 const LoadDashboard = async (req,res)=>{
     try {
         const admin =req.session.admin;
+        
+        
         if(!admin) return res.redirect('/admin/login');
 
-        const users = userModel.find({})
+        const users = await userModel.find({})
+        console.log(users)
+        let message = 'Login successful'
+         res.render('admin/dashboard', { users, adminMessage:req.session.adminMessage, message});
+         if(req.session.adminMessage){
+            message = ' '
+            req.session.adminMessage = null
+         }
 
-        res.render('admin/dashboard',{users})
+      
+
     } catch (error) {
-        
+        res.render('admin/login', { message: 'Something went wrong' })
     }
 }
 
+const editUser = async (req,res)=>{
+    try {
+        
+        const {username,password} = req.body;
+        const user = await userModel.findOneAndUpdate({_id:id},{username},{password});
+        console.log(user);
+        res.json(user)
+        
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 module.exports = {
     loadLogin,
     login,
-    LoadDashboard
+    LoadDashboard,
+    editUser
 }

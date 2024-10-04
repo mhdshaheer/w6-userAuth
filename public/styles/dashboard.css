@@ -13,6 +13,7 @@ header .left h3{
     margin-top: 10px;
 }
 header .center input{
+    color: white;
     border: none;
     outline: none;
     padding: 3px 10px;
@@ -21,7 +22,7 @@ header .center input{
     border-radius: 5px 0 0 5px;
 }
 header .center input:hover{
-
+    color: black;
     background-color: white;
     border: 1px solid black;
 }
@@ -64,6 +65,7 @@ header .right a:hover{
 
 /* Modal styles */
 .modal {
+    display: none;
     position: fixed;
     z-index: 1001;
     left: 0;
