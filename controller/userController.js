@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        console.log('catched');
+
 
         const { username, password } = req.body;
         console.log(req.body);
@@ -36,7 +36,7 @@ const login = async (req, res) => {
 
 
         if (!user) {
-            console.log('catched1');
+
             return res.render('user/login', { message: 'User does not exist' });
 
         }

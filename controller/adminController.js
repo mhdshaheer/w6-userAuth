@@ -11,10 +11,13 @@ const login = async (req, res) => {
         const { username, password } = req.body;
 
         const admin = await adminModel.findOne({ username });
-
+        
         if (!admin) {
+            
             return res.render('admin/login', { message: 'Invalid credentials' });
+            
         }
+
         const isMatch = await bcrypt.compare(password, admin.password);
         console.log(isMatch, password, admin.password)
 
