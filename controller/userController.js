@@ -5,7 +5,6 @@ const saltround = 10;
 const registerUser = async (req, res) => {
     try {
         const { username, password } = req.body;
-
         const user = await userSchema.findOne({ username });
 
         if (user) {
@@ -28,12 +27,10 @@ const registerUser = async (req, res) => {
 const login = async (req, res) => {
     try {
 
-
         const { username, password } = req.body;
         console.log(req.body);
         
         const user = await userSchema.findOne({ username });
-
 
         if (!user) {
 

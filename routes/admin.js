@@ -11,4 +11,4 @@ router.get('/delete-user/:id',adminAuth.checkSession,adminController.deleteUser)
 router.post('/add-user',adminAuth.checkSession,adminController.addUser);
 router.get('/logout',adminAuth.checkSession,adminController.logout);
 
-module.exports = router;
+module.exports = router; 
