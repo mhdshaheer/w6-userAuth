@@ -40,14 +40,14 @@ const login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
             console.log(isMatch);
             if(!isMatch){
-            console.log('catched2');
+    
 
                 res.render('user/login',{message:'password incorrect'})
             }
             req.session.user = true;
             console.log(req.session);
-            
-            res.render('user/home')
+            res.redirect('/user/home')
+            // res.render('user/home')
        
 
 

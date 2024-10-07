@@ -11,11 +11,11 @@ const login = async (req, res) => {
         const { username, password } = req.body;
 
         const admin = await adminModel.findOne({ username });
-        
+
         if (!admin) {
-            
+
             return res.render('admin/login', { message: 'Invalid credentials' });
-            
+
         }
 
         const isMatch = await bcrypt.compare(password, admin.password);
@@ -72,10 +72,10 @@ const editUser = async (req, res) => {
     }
 }
 
-const deleteUser = async (req,res) =>{
+const deleteUser = async (req, res) => {
     try {
-        const {id} = req.params;
-        const user = await userModel.findOneAndDelete({_id:id});
+        const { id } = req.params;
+        const user = await userModel.findOneAndDelete({ _id: id });
 
         res.redirect('/admin/dashboard')
 
@@ -86,15 +86,15 @@ const deleteUser = async (req,res) =>{
 }
 
 
-const addUser = async (req,res) =>{
+const addUser = async (req, res) => {
     try {
-        
-        const {username,password} = req.body;
-        const hashedPassword = await bcrypt.hash(password,10);
+
+        const { username, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = new userModel({
             username,
-            password:hashedPassword
+            password: hashedPassword
         })
 
         await newUser.save()
@@ -105,9 +105,26 @@ const addUser = async (req,res) =>{
         console.log(error)
     }
 }
-const logout = async (req,res) =>{
+const logout = async (req, res) => {
     req.session.admin = null;
     res.redirect('/admin/login')
+}
+const searching = async (req, res) => {
+    try {
+        const { searchVal } = req.body;
+        console.log(searchVal)
+        
+        const expr = new RegExp(`^${searchVal}`,"i");
+
+        const searchedUser = await userModel.find({username:expr})
+
+        res.json({
+            searchedUser
+        })
+        console.log(searchedUser)
+    } catch (error) {
+
+    }
 }
 
 
@@ -119,5 +136,6 @@ module.exports = {
     editUser,
     deleteUser,
     addUser,
-    logout
+    logout,
+    searching
 }
