@@ -2,10 +2,10 @@ const adminModel = require('../model/adminModel');
 const bcrypt = require('bcrypt');
 const userModel = require('../model/userModel')
 
-
 const loadLogin = async (req, res) => {
     res.render('admin/login')
 }
+
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -85,7 +85,6 @@ const deleteUser = async (req, res) => {
     }
 }
 
-
 const addUser = async (req, res) => {
     try {
 
@@ -105,10 +104,12 @@ const addUser = async (req, res) => {
         console.log(error)
     }
 }
+
 const logout = async (req, res) => {
     req.session.admin = null;
     res.redirect('/admin/login')
 }
+
 const searching = async (req, res) => {
     try {
         const { searchVal } = req.body;
@@ -123,10 +124,9 @@ const searching = async (req, res) => {
         })
         console.log(searchedUser)
     } catch (error) {
-
+        console.log(error)
     }
 }
-
 
 
 module.exports = {

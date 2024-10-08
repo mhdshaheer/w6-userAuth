@@ -26,7 +26,7 @@ app.use(express.urlencoded({extended:true}));
 
 const userRoutes = require('./routes/user');    //specified the path
 const adminRoutes = require('./routes/admin');
-//  missed anything.....?
+
 
 
 app.set('views',path.join(__dirname,'views'));   //set view engine
